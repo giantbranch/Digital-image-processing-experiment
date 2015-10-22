@@ -39,7 +39,7 @@ Type=0
 HeaderFile=ljz153View.h
 ImplementationFile=ljz153View.cpp
 Filter=C
-LastObject=ID_GREY
+LastObject=CLjz153View
 BaseClass=CScrollView
 VirtualFilter=VWC
 

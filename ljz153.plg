@@ -6,33 +6,35 @@
 --------------------Configuration: ljz153 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP95.tmp" with contents
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7B.tmp" with contents
 [
-/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ljz153.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /c 
-"D:\ljz153\ljz153View.cpp"
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ljz153.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\ljz153\Digital-image-processing-experiment\bmp.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP95.tmp" 
-Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP96.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7B.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7C.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ljz153.pdb" /debug /machine:I386 /out:"Debug/ljz153.exe" /pdbtype:sept 
-.\Debug\ljz153.obj
-.\Debug\StdAfx.obj
-.\Debug\MainFrm.obj
-.\Debug\ljz153Doc.obj
-.\Debug\ljz153View.obj
-.\Debug\ljz153.res
-.\Debug\bmp.obj
+".\Debug\bmp.obj"
+".\Debug\ljz153.obj"
+".\Debug\ljz153Doc.obj"
+".\Debug\ljz153View.obj"
+".\Debug\MainFrm.obj"
+".\Debug\StdAfx.obj"
+".\Debug\ljz153.res"
 ]
-Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP96.tmp"
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7C.tmp"
 <h3>Output Window</h3>
 Compiling...
-ljz153View.cpp
-Linking...
+bmp.cpp
+E:\ljz153\Digital-image-processing-experiment\bmp.cpp(115) : error C2296: '&' : illegal, left operand has type 'unsigned char *'
+E:\ljz153\Digital-image-processing-experiment\bmp.cpp(117) : error C2679: binary '=' : no operator defined which takes a right-hand operand of type 'struct tagRGBQUAD' (or there is no acceptable conversion)
+Error executing cl.exe.
 
 
 
 <h3>Results</h3>
-ljz153.exe - 0 error(s), 0 warning(s)
+ljz153.exe - 2 error(s), 0 warning(s)
 </pre>
 </body>
 </html>

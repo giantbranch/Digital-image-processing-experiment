@@ -22,6 +22,7 @@ BEGIN_MESSAGE_MAP(CLjz153View, CScrollView)
 	//{{AFX_MSG_MAP(CLjz153View)
 	ON_COMMAND(ID_GREY, OnGrey)
 	ON_UPDATE_COMMAND_UI(ID_GREY, OnUpdateGrey)
+	ON_WM_LBUTTONDOWN()
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -133,4 +134,11 @@ void CLjz153View::OnUpdateGrey(CCmdUI* pCmdUI)
 {
 	// TODO: Add your command update UI handler code here
 	
+}
+void ShowDetail(CPoint point);
+void CLjz153View::OnLButtonDown(UINT nFlags, CPoint point) 
+{
+	// TODO: Add your message handler code here and/or call default
+	ShowDetail(point);
+	CScrollView::OnLButtonDown(nFlags, point);
 }

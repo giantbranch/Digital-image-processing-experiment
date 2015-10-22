@@ -51,6 +51,7 @@ protected:
 	//{{AFX_MSG(CLjz153View)
 	afx_msg void OnGrey();
 	afx_msg void OnUpdateGrey(CCmdUI* pCmdUI);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

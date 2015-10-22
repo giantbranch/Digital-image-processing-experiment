@@ -60,10 +60,10 @@ BOOL LoadBmpFile (char* BmpFileName)
 
 void Gray()
 {
-	int w = lpBitsInfo->bmiHeader.biWidth;
-	int h = lpBitsInfo->bmiHeader.biHeight;
-	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;
-	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];
+	int w = lpBitsInfo->bmiHeader.biWidth;	//宽度
+	int h = lpBitsInfo->bmiHeader.biHeight;	//高度
+	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;	//每一行所占用字节数
+	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];	//调色板指针
 	//新图像内存大小
 	int new_LineBytes =(w * 8 + 31)/32 * 4;
 	LONG size = 40 + 1024 + new_LineBytes * h;
@@ -97,8 +97,41 @@ void Gray()
 		}
 	}
 	free(lpBitsInfo);
-	lpBitsInfo = new_lpBitsInfo;
+	lpBitsInfo = new_lpBitsInfo;	
+}
 
 
+void ShowDetail(CPoint point){
+	int w = lpBitsInfo->bmiHeader.biWidth;
+	int h = lpBitsInfo->bmiHeader.biHeight;
+	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;
+	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];
+	BYTE* Pixel;
+	int R, G, B;
+	CString value;
 	
+	switch(lpBitsInfo->bmiHeader.biBitCount){
+		case 1:
+			Pixel = (lpBits + LineBytes * (h - 1 - point.y) + point.x/8)>>(1-7point.x%8);
+			//*Pixel = *Pixel >> (7-point.x%8)&1;
+			R = lpBitsInfo->bmiColors[*Pixel];
+			value.Format("%d", R);
+			AfxMessageBox(value);
+			break;
+		case 4:
+		case 8:
+			Pixel = lpBits + LineBytes * (h - 1 - point.y) + point.x;
+			R = lpBitsInfo->bmiColors[*Pixel].rgbRed;
+			G = lpBitsInfo->bmiColors[*Pixel].rgbGreen;
+			B = lpBitsInfo->bmiColors[*Pixel].rgbBlue;
+			value.Format("R:%d G:%d B:%d", R, G, B);
+			AfxMessageBox(value);
+			break;
+		case 24:
+			Pixel = lpBits + LineBytes * (h - 1 - point.y) + point.x;
+			//value.Format("%d", *Pixel);
+			AfxMessageBox(value);
+			break;
+
+	}
 }
