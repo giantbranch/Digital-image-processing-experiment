@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "关于 ljz153(&A)...",          ID_APP_ABOUT
     END
+    POPUP "统计"
+    BEGIN
+        MENUITEM "灰度统计",                    ID_GREY_GROUP
+    END
 END
 
 

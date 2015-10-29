@@ -107,16 +107,23 @@ void ShowDetail(CPoint point){
 	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;
 	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];
 	BYTE* Pixel;
+	int val;
 	int R, G, B;
 	CString value;
 	
 	switch(lpBitsInfo->bmiHeader.biBitCount){
 		case 1:
-			Pixel = (lpBits + LineBytes * (h - 1 - point.y) + point.x/8)>>(1-7point.x%8);
+			val = *(lpBits + LineBytes * (h - 1 - point.y) + point.x/8)&(1<<(7-point.x%8));
+			Pixel = lpBits + LineBytes * (h - 1 - point.y) + point.x/8;
+			*Pixel = *(lpBits + LineBytes * (h - 1 - point.y) + point.x/8)&(1<<(7-point.x%8));
 			//*Pixel = *Pixel >> (7-point.x%8)&1;
-			R = lpBitsInfo->bmiColors[*Pixel];
-			value.Format("%d", R);
-			AfxMessageBox(value);
+
+			if (*Pixel == 0)
+			{
+				AfxMessageBox("0");
+			}else{
+				AfxMessageBox("1");
+			}
 			break;
 		case 4:
 		case 8:
@@ -135,3 +142,32 @@ void ShowDetail(CPoint point){
 
 	}
 }
+
+void statisticsGrey(){
+
+	int w = lpBitsInfo->bmiHeader.biWidth;
+	int h = lpBitsInfo->bmiHeader.biHeight;
+	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;	//每行字节
+	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];	//实际位图数据
+	
+	int statistics[255];	//储存统计数据
+	BYTE* Pixel;	//存储像素值
+	CString str = "", val = "";
+	int R, G, B;
+	for (int i = 0; i <=1 ; i++)
+	{
+		for (int j = 0; j < w; j++)
+		{
+			Pixel = lpBits + LineBytes*1 +j;
+			R = lpBitsInfo->bmiColors[*Pixel].rgbRed;
+			G = lpBitsInfo->bmiColors[*Pixel].rgbGreen;
+			B = lpBitsInfo->bmiColors[*Pixel].rgbBlue;
+			str.Format("R:%d G:%d B:%d", R, G, B);
+			val += str;
+		}
+	}
+	AfxMessageBox(val);
+
+
+}
+

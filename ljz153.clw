@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CLjz153View
+LastClass=CMainFrame
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ljz153.h"
@@ -49,7 +49,7 @@ Type=0
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
 Filter=T
-LastObject=CMainFrame
+LastObject=ID_GREY_GROUP
 BaseClass=CFrameWnd
 VirtualFilter=fWC
 
@@ -91,7 +91,8 @@ Command13=ID_EDIT_PASTE
 Command14=ID_VIEW_TOOLBAR
 Command15=ID_VIEW_STATUS_BAR
 Command16=ID_APP_ABOUT
-CommandCount=16
+Command17=ID_GREY_GROUP
+CommandCount=17
 
 [ACL:IDR_MAINFRAME]
 Type=1
