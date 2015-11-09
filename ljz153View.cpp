@@ -7,6 +7,8 @@
 #include "ljz153Doc.h"
 #include "ljz153View.h"
 
+#include "Dialog_Grey.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -23,6 +25,7 @@ BEGIN_MESSAGE_MAP(CLjz153View, CScrollView)
 	ON_COMMAND(ID_GREY, OnGrey)
 	ON_UPDATE_COMMAND_UI(ID_GREY, OnUpdateGrey)
 	ON_WM_LBUTTONDOWN()
+	ON_COMMAND(ID_GREY_STATIS, OnGreyStatis)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -136,9 +139,23 @@ void CLjz153View::OnUpdateGrey(CCmdUI* pCmdUI)
 	
 }
 void ShowDetail(CPoint point);
+extern int picNum;
 void CLjz153View::OnLButtonDown(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
-	ShowDetail(point);
-	CScrollView::OnLButtonDown(nFlags, point);
+	if (picNum != 0)
+	{
+		ShowDetail(point);
+		CScrollView::OnLButtonDown(nFlags, point);
+	}else{
+		AfxMessageBox("Ã»ÓÐÍ¼Ïñ");
+	}
+}
+
+
+void CLjz153View::OnGreyStatis() 
+{
+	// TODO: Add your command handler code here
+	Dialog_Grey dlg;
+	dlg.DoModal();
 }

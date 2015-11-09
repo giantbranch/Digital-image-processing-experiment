@@ -1,7 +1,10 @@
 #include "stdafx.h"
 
 LPBITMAPINFO  lpBitsInfo = NULL;
-
+LPBITMAPINFO  lpBitsInfo1 = NULL;
+LPBITMAPINFO  lpBitsInfo2 = NULL;
+int picNum = 0;
+//BOOL LoadBmpFile (char* BmpFileName, LPBITMAPINFO lpInfo = NULL)
 BOOL LoadBmpFile (char* BmpFileName)
 {
 	FILE* fp;
@@ -143,31 +146,5 @@ void ShowDetail(CPoint point){
 	}
 }
 
-void statisticsGrey(){
 
-	int w = lpBitsInfo->bmiHeader.biWidth;
-	int h = lpBitsInfo->bmiHeader.biHeight;
-	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;	//每行字节
-	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];	//实际位图数据
-	
-	int statistics[255];	//储存统计数据
-	BYTE* Pixel;	//存储像素值
-	CString str = "", val = "";
-	int R, G, B;
-	for (int i = 0; i <=1 ; i++)
-	{
-		for (int j = 0; j < w; j++)
-		{
-			Pixel = lpBits + LineBytes*1 +j;
-			R = lpBitsInfo->bmiColors[*Pixel].rgbRed;
-			G = lpBitsInfo->bmiColors[*Pixel].rgbGreen;
-			B = lpBitsInfo->bmiColors[*Pixel].rgbBlue;
-			str.Format("R:%d G:%d B:%d", R, G, B);
-			val += str;
-		}
-	}
-	AfxMessageBox(val);
-
-
-}
 

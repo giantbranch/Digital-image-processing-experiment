@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include "ljz153.h"
-
 #include "MainFrm.h"
 
 #ifdef _DEBUG
@@ -20,8 +19,6 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	//{{AFX_MSG_MAP(CMainFrame)
 	ON_WM_CREATE()
-	ON_COMMAND(ID_GREY_GROUP, OnGreyGroup)
-	ON_UPDATE_COMMAND_UI(ID_GREY_GROUP, OnUpdateGreyGroup)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -105,15 +102,3 @@ void CMainFrame::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
-void statisticsGrey();
-void CMainFrame::OnGreyGroup() 
-{
-	// TODO: Add your command handler code here
-	statisticsGrey();
-}
-
-void CMainFrame::OnUpdateGreyGroup(CCmdUI* pCmdUI) 
-{
-	// TODO: Add your command update UI handler code here
-	
-}

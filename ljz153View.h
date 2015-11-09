@@ -52,6 +52,7 @@ protected:
 	afx_msg void OnGrey();
 	afx_msg void OnUpdateGrey(CCmdUI* pCmdUI);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnGreyStatis();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

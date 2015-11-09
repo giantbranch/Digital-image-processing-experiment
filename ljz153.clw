@@ -2,22 +2,25 @@
 
 [General Info]
 Version=1
-LastClass=CMainFrame
+LastClass=CLjz153View
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ljz153.h"
 LastPage=0
 
-ClassCount=5
+ClassCount=6
 Class1=CLjz153App
 Class2=CLjz153Doc
 Class3=CLjz153View
 Class4=CMainFrame
 
-ResourceCount=2
-Resource1=IDR_MAINFRAME
+ResourceCount=4
+Resource1=IDD_ABOUTBOX
 Class5=CAboutDlg
-Resource2=IDD_ABOUTBOX
+Resource2=IDD_DIALOG_GREY_STATICS
+Class6=Dialog_Grey
+Resource3=IDR_MAINFRAME
+Resource4=IDD_DIALOG1
 
 [CLS:CLjz153App]
 Type=0
@@ -49,7 +52,7 @@ Type=0
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
 Filter=T
-LastObject=ID_GREY_GROUP
+LastObject=IDT_PIC1
 BaseClass=CFrameWnd
 VirtualFilter=fWC
 
@@ -91,8 +94,9 @@ Command13=ID_EDIT_PASTE
 Command14=ID_VIEW_TOOLBAR
 Command15=ID_VIEW_STATUS_BAR
 Command16=ID_APP_ABOUT
-Command17=ID_GREY_GROUP
-CommandCount=17
+Command17=ID_GREY_STATIS
+Command18=IDM_MOVE
+CommandCount=18
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -125,5 +129,28 @@ Command6=ID_EDIT_PASTE
 Command7=ID_FILE_PRINT
 Command8=ID_APP_ABOUT
 Command9=ID_GREY
-CommandCount=9
+Command10=IDT_PIC1
+Command11=IDT_PIC2
+CommandCount=11
+
+[DLG:IDD_DIALOG_GREY_STATICS]
+Type=1
+Class=Dialog_Grey
+ControlCount=0
+
+[CLS:Dialog_Grey]
+Type=0
+HeaderFile=Dialog_Grey.h
+ImplementationFile=Dialog_Grey.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=Dialog_Grey
+VirtualFilter=dWC
+
+[DLG:IDD_DIALOG1]
+Type=1
+Class=?
+ControlCount=2
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
 
