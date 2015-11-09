@@ -110,7 +110,7 @@ void ShowDetail(CPoint point){
 	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;
 	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];
 	BYTE* Pixel;
-	int val;
+	int val,fourBit;
 	int R, G, B;
 	CString value;
 	
@@ -129,6 +129,24 @@ void ShowDetail(CPoint point){
 			}
 			break;
 		case 4:
+			//方法一
+			//fourBit = *(lpBits + LineBytes * (h - 1 - point.y) + point.x/2)&(15<<(1-point.x%2)*4);
+			//方法二
+			if (!point.x%2)//判断点击的是8个字节中的左边还是右边，坐标从0开始
+			{
+				//点击了左边，取高四位，右移四位即可
+				fourBit = *(lpBits + LineBytes * (h - 1 - point.y) + point.x/2)>>4;
+			}else{
+				//点击了右边，取低四位，与15（即00001111）相与
+				fourBit = (BYTE)*(lpBits + LineBytes * (h - 1 - point.y) + point.x/2)&15;
+			}
+			//通过调色板获取rgb的值
+			R = lpBitsInfo->bmiColors[fourBit].rgbRed;
+			G = lpBitsInfo->bmiColors[fourBit].rgbGreen;
+			B = lpBitsInfo->bmiColors[fourBit].rgbBlue;
+			value.Format("R:%d G:%d B:%d", R, G, B);
+			AfxMessageBox(value);
+			break;
 		case 8:
 			Pixel = lpBits + LineBytes * (h - 1 - point.y) + point.x;
 			R = lpBitsInfo->bmiColors[*Pixel].rgbRed;

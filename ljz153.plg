@@ -6,14 +6,13 @@
 --------------------Configuration: ljz153 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP523B.tmp" with contents
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP8C0E.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ljz153.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
 "D:\Digital-image-processing-experiment\bmp.cpp"
-"D:\Digital-image-processing-experiment\ljz153Doc.cpp"
 ]
-Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP523B.tmp" 
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP523C.tmp" with contents
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP8C0E.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP8C0F.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ljz153.pdb" /debug /machine:I386 /out:"Debug/ljz153.exe" /pdbtype:sept 
 ".\Debug\bmp.obj"
@@ -25,12 +24,11 @@ Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP523C.tmp" with 
 ".\Debug\StdAfx.obj"
 ".\Debug\ljz153.res"
 ]
-Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP523C.tmp"
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP8C0F.tmp"
 <h3>Output Window</h3>
 Compiling...
 bmp.cpp
-ljz153Doc.cpp
-Generating Code...
+D:\Digital-image-processing-experiment\bmp.cpp(135) : warning C4804: '%' : unsafe use of type 'bool' in operation
 Linking...
 Creating command line "bscmake.exe /nologo /o"Debug/ljz153.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\bmp.sbr" ".\Debug\Dialog_Grey.sbr" ".\Debug\ljz153.sbr" ".\Debug\ljz153Doc.sbr" ".\Debug\ljz153View.sbr" ".\Debug\MainFrm.sbr""
 Creating browse info file...

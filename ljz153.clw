@@ -17,9 +17,9 @@ Class4=CMainFrame
 ResourceCount=4
 Resource1=IDD_ABOUTBOX
 Class5=CAboutDlg
-Resource2=IDD_DIALOG_GREY_STATICS
+Resource2=IDR_MAINFRAME
 Class6=Dialog_Grey
-Resource3=IDR_MAINFRAME
+Resource3=IDD_DIALOG_GREY_STATICS
 Resource4=IDD_DIALOG1
 
 [CLS:CLjz153App]
