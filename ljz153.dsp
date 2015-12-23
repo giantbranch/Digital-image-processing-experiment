@@ -98,6 +98,14 @@ SOURCE=.\Dialog_Grey.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Dlg_High.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Dlg_Low.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ljz153.cpp
 # End Source File
 # Begin Source File
@@ -118,6 +126,10 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\MoveDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
 # End Source File
@@ -128,6 +140,14 @@ SOURCE=.\StdAfx.cpp
 # Begin Source File
 
 SOURCE=.\Dialog_Grey.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Dlg_High.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Dlg_Low.h
 # End Source File
 # Begin Source File
 
@@ -144,6 +164,10 @@ SOURCE=.\ljz153View.h
 # Begin Source File
 
 SOURCE=.\MainFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MoveDlg.h
 # End Source File
 # Begin Source File
 

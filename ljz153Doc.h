@@ -44,8 +44,6 @@ protected:
 // Generated message map functions
 protected:
 	//{{AFX_MSG(CLjz153Doc)
-	afx_msg void OnPic2();
-	afx_msg void OnPic1();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

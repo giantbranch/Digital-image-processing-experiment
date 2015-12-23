@@ -19,8 +19,6 @@ IMPLEMENT_DYNCREATE(CLjz153Doc, CDocument)
 
 BEGIN_MESSAGE_MAP(CLjz153Doc, CDocument)
 	//{{AFX_MSG_MAP(CLjz153Doc)
-	ON_COMMAND(IDT_PIC2, OnPic2)
-	ON_COMMAND(IDT_PIC1, OnPic1)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -82,46 +80,28 @@ void CLjz153Doc::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CLjz153Doc commands
-BOOL LoadBmpFile (char*);
+LPBITMAPINFO LoadBmpFile (char*);
 extern int picNum;
+extern LPBITMAPINFO  lpBitsInfo;
+extern LPBITMAPINFO  lpBitsInfo1;
+
 BOOL CLjz153Doc::OnOpenDocument(LPCTSTR lpszPathName) 
 {
 	if (!CDocument::OnOpenDocument(lpszPathName))
 		return FALSE;
 	
 	// TODO: Add your specialized creation code here
-	LoadBmpFile((char*) lpszPathName);
-	picNum++;
+	lpBitsInfo = LoadBmpFile((char*) lpszPathName);
+//	if (picNum == 0)//打开第一幅图像
+//	{
+//		lpBitsInfo = LoadBmpFile((char*) lpszPathName);		
+//		picNum++;
+//	}else if (picNum == 1)
+//	{
+//		lpBitsInfo1 = LoadBmpFile((char*) lpszPathName);
+//		picNum++;
+//	}
+	
 	return TRUE;
 }
 
-void CLjz153Doc::OnPic2() 
-{
-	// TODO: Add your command handler code here
-	CFileDialog pic2( TRUE, _T( ".exe" ), _T( "test.exe" ), OFN_FILEMUSTEXIST | OFN_HIDEREADONLY, _T( "图片(bmp)|*.bmp|所有文件|*||" ) );
-	if ( pic2.DoModal() == IDOK ) 
-	{
-		CString path = pic2.GetPathName();	//获取路径
-		//AfxMessageBox(path);
-		char* name = path.GetBuffer(path.GetLength());
-		path.ReleaseBuffer();
-		LoadBmpFile(name);
-		picNum++;
-	}
-}
-
-void CLjz153Doc::OnPic1() 
-{
-	// TODO: Add your command handler code here
-	CFileDialog pic1( TRUE, _T( ".exe" ), _T( "test.exe" ), OFN_FILEMUSTEXIST | OFN_HIDEREADONLY, _T( "应用程序(bmp)|*.bmp|所有文件|*||" ) );
-	if ( pic1.DoModal() == IDOK ) 
-	{
-		CString path = pic1.GetPathName();	//获取路径
-		//AfxMessageBox(path);
-		char* name = path.GetBuffer(path.GetLength());
-		path.ReleaseBuffer();
-		LoadBmpFile(name);
-		
-		picNum++;
-	}
-}

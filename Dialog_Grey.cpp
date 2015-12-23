@@ -42,7 +42,8 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // Dialog_Grey message handlers
 
-int statistics[256];	//储存统计数据
+extern int statistics[256];	//储存统计数据
+
 void Dialog_Grey::OnPaint() 
 {
 	CPaintDC dc(this); // device context for painting
@@ -69,53 +70,13 @@ void Dialog_Grey::OnPaint()
 	// Do not call CDialog::OnPaint() for painting messages
 }
 
-extern LPBITMAPINFO   lpBitsInfo;
+void GrayStatistics ();
 BOOL Dialog_Grey::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
 	
 	// TODO: Add extra initialization here
-	
-
-	int w = lpBitsInfo->bmiHeader.biWidth;
-	int h = lpBitsInfo->bmiHeader.biHeight;
-	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;	//每行字节
-	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];	//实际位图数据
-	
-	//初始化统计数据
-	for (int k = 0; k<256 ;k++)
-	{
-		statistics[k] = 0;
-	}
-
-	
-	BYTE* Pixel;	//像素指针
-	int R;
-	for (int i = 0; i <=h ; i++)
-	{
-		for (int j = 0; j < w; j++)
-		{
-			Pixel = lpBits + LineBytes*i +j;
-			R = lpBitsInfo->bmiColors[*Pixel].rgbRed;	//因为为256灰色，获取其中一个值即可
-			statistics[R]++;
-		}
-	}
-
-	//调试过程，找出最大值，以便画图时确定高度的比例
-	/*
-	int maxNum = 0;
-	CString str = "",a,b;
-	for (i = 0; i<256; i++)
-	{
-		//a.Format("%d: ",i);
-		//b.Format("%d; ",statistics[i]);
-		//str = str + a + b;
-		maxNum =  statistics[i]>maxNum?statistics[i]:maxNum;
-	}
-	str.Format("%d",maxNum);
-	//AfxMessageBox(str);
-	*/
-
+	GrayStatistics();
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }

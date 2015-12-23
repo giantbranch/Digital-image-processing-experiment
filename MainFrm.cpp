@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ljz153.h"
 #include "MainFrm.h"
+#include "MoveDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -101,4 +102,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
+
+
+
 

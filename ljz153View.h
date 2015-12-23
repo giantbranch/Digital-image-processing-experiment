@@ -53,6 +53,29 @@ protected:
 	afx_msg void OnUpdateGrey(CCmdUI* pCmdUI);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnGreyStatis();
+	afx_msg void OnPic1();
+	afx_msg void OnPic2();
+	afx_msg void OnFt();
+	afx_msg void OnFft();
+	afx_msg void OnUpdateFft(CCmdUI* pCmdUI);
+	afx_msg void OnIfft();
+	afx_msg void OnUpdateIfft(CCmdUI* pCmdUI);
+	afx_msg void OnIft();
+	afx_msg void OnAverageFilter();
+	afx_msg void OnUpdateAverageFilter(CCmdUI* pCmdUI);
+	afx_msg void OnMedianFilter();
+	afx_msg void OnUpdateMedianFilter(CCmdUI* pCmdUI);
+	afx_msg void OnGradSharp();
+	afx_msg void OnUpdateGradSharp(CCmdUI* pCmdUI);
+	afx_msg void OnRaplasSharp();
+	afx_msg void OnUpdateRaplasSharp(CCmdUI* pCmdUI);
+	afx_msg void OnLow();
+	afx_msg void OnUpdateLow(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateHigh(CCmdUI* pCmdUI);
+	afx_msg void OnHigh();
+	afx_msg void OnMove();
+	afx_msg void OnLine();
+	afx_msg void OnEqual();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

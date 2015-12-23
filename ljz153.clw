@@ -8,19 +8,24 @@ NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ljz153.h"
 LastPage=0
 
-ClassCount=6
+ClassCount=9
 Class1=CLjz153App
 Class2=CLjz153Doc
 Class3=CLjz153View
 Class4=CMainFrame
 
-ResourceCount=4
+ResourceCount=6
 Resource1=IDD_ABOUTBOX
 Class5=CAboutDlg
 Resource2=IDR_MAINFRAME
 Class6=Dialog_Grey
-Resource3=IDD_DIALOG_GREY_STATICS
+Resource3=IDD_DIALOG_LOW
+Class7=MoveDlg
 Resource4=IDD_DIALOG1
+Class8=Dlg_Low
+Resource5=IDD_DIALOG_GREY_STATICS
+Class9=Dlg_High
+Resource6=IDD_DIALOG_HIGH
 
 [CLS:CLjz153App]
 Type=0
@@ -35,7 +40,7 @@ ImplementationFile=ljz153Doc.cpp
 Filter=N
 BaseClass=CDocument
 VirtualFilter=DC
-LastObject=CLjz153Doc
+LastObject=IDT_PIC2
 
 [CLS:CLjz153View]
 Type=0
@@ -52,7 +57,7 @@ Type=0
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
 Filter=T
-LastObject=IDT_PIC1
+LastObject=IDM_EQUAL
 BaseClass=CFrameWnd
 VirtualFilter=fWC
 
@@ -95,8 +100,20 @@ Command14=ID_VIEW_TOOLBAR
 Command15=ID_VIEW_STATUS_BAR
 Command16=ID_APP_ABOUT
 Command17=ID_GREY_STATIS
-Command18=IDM_MOVE
-CommandCount=18
+Command18=IDM_LINE
+Command19=IDM_EQUAL
+Command20=IDM_MOVE
+Command21=IDM_FT
+Command22=IDM_IFT
+Command23=IDM_FFT
+Command24=IDM_IFFT
+Command25=ID_AVERAGE_FILTER
+Command26=ID_MEDIAN_FILTER
+Command27=ID_GRAD_SHARP
+Command28=ID_RAPLAS_SHARP
+Command29=IDM_LOW
+Command30=IDM_HIGH
+CommandCount=30
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -149,8 +166,56 @@ VirtualFilter=dWC
 
 [DLG:IDD_DIALOG1]
 Type=1
-Class=?
-ControlCount=2
-Control1=IDOK,button,1342242817
+Class=MoveDlg
+ControlCount=7
+Control1=IDOKMOVE,button,1342242817
 Control2=IDCANCEL,button,1342242816
+Control3=IDC_EDIT_MOVE_X,edit,1350631552
+Control4=IDC_EDIT_MOVE_Y,edit,1350631552
+Control5=IDC_STATIC,static,1342308352
+Control6=IDC_STATIC,static,1342308352
+Control7=IDC_STATIC,static,1342308352
+
+[CLS:MoveDlg]
+Type=0
+HeaderFile=MoveDlg.h
+ImplementationFile=MoveDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=ID_APP_ABOUT
+VirtualFilter=dWC
+
+[DLG:IDD_DIALOG_LOW]
+Type=1
+Class=Dlg_Low
+ControlCount=3
+Control1=IDOK2,button,1342242817
+Control2=IDC_STATIC_LOW,static,1342308352
+Control3=IDC_EDIT_LOW,edit,1350631552
+
+[CLS:Dlg_Low]
+Type=0
+HeaderFile=Dlg_Low.h
+ImplementationFile=Dlg_Low.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=Dlg_Low
+VirtualFilter=dWC
+
+[DLG:IDD_DIALOG_HIGH]
+Type=1
+Class=Dlg_High
+ControlCount=3
+Control1=IDOK,button,1342242817
+Control2=IDC_STATIC_HIGH,static,1342308352
+Control3=IDC_EDIT_HIGH,edit,1350631552
+
+[CLS:Dlg_High]
+Type=0
+HeaderFile=Dlg_High.h
+ImplementationFile=Dlg_High.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=Dlg_High
+VirtualFilter=dWC
 

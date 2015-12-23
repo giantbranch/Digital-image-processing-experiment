@@ -145,9 +145,30 @@ BEGIN
         MENUITEM "灰度统计",                    ID_GREY_STATIS
         MENUITEM "",                            ID_MENUITEM32776
     END
+    POPUP "点运算"
+    BEGIN
+        MENUITEM "线性点运算",                  IDM_LINE
+        MENUITEM "直方图均衡化",                IDM_EQUAL
+    END
     POPUP "变换"
     BEGIN
         MENUITEM "平移",                        IDM_MOVE
+        MENUITEM "傅里叶变换",                  IDM_FT
+        MENUITEM "傅里叶反变换",                IDM_IFT
+        MENUITEM "快速傅里叶变换",              IDM_FFT
+        MENUITEM "快速傅里叶反变换",            IDM_IFFT
+    END
+    POPUP "空域滤波"
+    BEGIN
+        MENUITEM "均值滤波",                    ID_AVERAGE_FILTER
+        MENUITEM "中值滤波",                    ID_MEDIAN_FILTER
+        MENUITEM "梯度锐化",                    ID_GRAD_SHARP
+        MENUITEM "拉普拉斯锐化",                ID_RAPLAS_SHARP
+    END
+    POPUP "频域滤波"
+    BEGIN
+        MENUITEM "低空滤波",                    IDM_LOW
+        MENUITEM "高通滤波",                    IDM_HIGH
     END
 END
 
@@ -204,8 +225,33 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "对话"
 FONT 10, "System"
 BEGIN
-    DEFPUSHBUTTON   "确定",IDOK,130,7,50,14
-    PUSHBUTTON      "取消",IDCANCEL,130,24,50,14
+    DEFPUSHBUTTON   "确定",IDOKMOVE,66,75,50,14
+    PUSHBUTTON      "取消",IDCANCEL,130,75,50,14
+    EDITTEXT        IDC_EDIT_MOVE_X,45,38,42,18,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MOVE_Y,113,37,42,18,ES_AUTOHSCROLL
+    LTEXT           "请输入平移到哪个点",IDC_STATIC,7,7,73,13
+    LTEXT           "X:",IDC_STATIC,32,38,11,18
+    LTEXT           "Y:",IDC_STATIC,100,38,13,18
+END
+
+IDD_DIALOG_LOW DIALOG DISCARDABLE  0, 0, 187, 58
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "低通滤波"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK2,115,22,50,14
+    LTEXT           "请输入半径",IDC_STATIC_LOW,20,22,41,8
+    EDITTEXT        IDC_EDIT_LOW,65,19,41,13,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG_HIGH DIALOG DISCARDABLE  0, 0, 187, 54
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "高通滤波"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,115,20,50,14
+    LTEXT           "请输入半径",IDC_STATIC_HIGH,20,22,41,8
+    EDITTEXT        IDC_EDIT_HIGH,65,19,41,13,ES_AUTOHSCROLL
 END
 
 
@@ -282,6 +328,22 @@ BEGIN
         RIGHTMARGIN, 180
         TOPMARGIN, 7
         BOTTOMMARGIN, 89
+    END
+
+    IDD_DIALOG_LOW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_DIALOG_HIGH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
     END
 END
 #endif    // APSTUDIO_INVOKED
