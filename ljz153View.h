@@ -76,6 +76,12 @@ protected:
 	afx_msg void OnMove();
 	afx_msg void OnLine();
 	afx_msg void OnEqual();
+	afx_msg void OnBpf();
+	afx_msg void OnBhpf();
+	afx_msg void OnUpdateFt(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateIft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateBhpf(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateBpf(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

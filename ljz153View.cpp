@@ -52,6 +52,12 @@ BEGIN_MESSAGE_MAP(CLjz153View, CScrollView)
 	ON_COMMAND(IDM_MOVE, OnMove)
 	ON_COMMAND(IDM_LINE, OnLine)
 	ON_COMMAND(IDM_EQUAL, OnEqual)
+	ON_COMMAND(IDM_BPF, OnBpf)
+	ON_COMMAND(IDM_BHPF, OnBhpf)
+	ON_UPDATE_COMMAND_UI(IDM_FT, OnUpdateFt)
+	ON_UPDATE_COMMAND_UI(IDM_IFT, OnUpdateIft)
+	ON_UPDATE_COMMAND_UI(IDM_BHPF, OnUpdateBhpf)
+	ON_UPDATE_COMMAND_UI(IDM_BPF, OnUpdateBpf)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -108,6 +114,8 @@ void CLjz153View::OnDraw(CDC* pDC)
 			lpBits1, lpBitsInfo1,
 		DIB_RGB_COLORS, SRCCOPY);
 	}
+
+	
 	
 	if (lpDIB_FFT)
 	{
@@ -132,7 +140,7 @@ void CLjz153View::OnDraw(CDC* pDC)
 		LPVOID lpBits = (LPVOID)&lpDIB_IFFT->bmiColors[lpDIB_IFFT->bmiHeader.biClrUsed];
 		StretchDIBits( 
 			pDC->GetSafeHdc(),
-			600,0,
+			600,600,
 			lpDIB_IFFT->bmiHeader.biWidth,
 			lpDIB_IFFT->bmiHeader.biHeight,
 			0,0,
@@ -143,14 +151,7 @@ void CLjz153View::OnDraw(CDC* pDC)
 			DIB_RGB_COLORS,
 			SRCCOPY);
 	}
-
-
-
-
-
 	return;
-	
-
 }
 
 void CLjz153View::OnInitialUpdate()
@@ -159,7 +160,8 @@ void CLjz153View::OnInitialUpdate()
 
 	CSize sizeTotal;
 	// TODO: calculate the total size of this view
-	sizeTotal.cx = sizeTotal.cy = 100;
+	sizeTotal.cx = 1500;
+	sizeTotal.cy = 2000;
 	SetScrollSizes(MM_TEXT, sizeTotal);
 }
 
@@ -216,7 +218,7 @@ void CLjz153View::OnGrey()
 void CLjz153View::OnUpdateGrey(CCmdUI* pCmdUI) 
 {
 	// TODO: Add your command update UI handler code here
-	
+	pCmdUI->Enable(lpBitsInfo != NULL);
 }
 void ShowDetail(CPoint point);
 extern int picNum;
@@ -280,6 +282,7 @@ void CLjz153View::OnFt()
 {
 	// TODO: Add your command handler code here
 	lowFourier();
+	Invalidate();
 
 }
 
@@ -288,6 +291,7 @@ void CLjz153View::OnIft()
 {
 	// TODO: Add your command handler code here
 	lowIFourier();
+	Invalidate();
 }
 
 
@@ -297,7 +301,7 @@ void CLjz153View::OnFft()
 	// TODO: Add your command handler code here
 	if (lpDIB_FFT)
 		free(lpDIB_FFT);
-	
+	lpDIB_IFFT = NULL;
 	Fourier();
 	Invalidate();
 
@@ -387,6 +391,7 @@ void CLjz153View::OnUpdateRaplasSharp(CCmdUI* pCmdUI)
 
 int radius = 10;
 void Ideal_Filter_FFT(int D);
+void BLPF_Filter_FFT(int D);
 void CLjz153View::OnLow() 
 {
 	// TODO: Add your command handler code here
@@ -440,4 +445,46 @@ void CLjz153View::OnEqual()
 	// TODO: Add your command handler code here
 	equalization();
 	Invalidate();
+}
+
+void CLjz153View::OnBpf() 
+{
+	// TODO: Add your command handler code here
+	Dlg_Low dlg_low;
+	dlg_low.DoModal();
+	BLPF_Filter_FFT(radius);
+	Invalidate();
+}
+
+void CLjz153View::OnBhpf() 
+{
+	// TODO: Add your command handler code here
+	Dlg_High dlg_high;
+	dlg_high.DoModal();
+	BLPF_Filter_FFT(radius);
+	Invalidate();
+}
+
+void CLjz153View::OnUpdateFt(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(lpBitsInfo != NULL);
+}
+
+void CLjz153View::OnUpdateIft(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(lpBitsInfo != NULL);
+}
+
+void CLjz153View::OnUpdateBhpf(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(lpDIB_FFT != NULL);
+}
+
+void CLjz153View::OnUpdateBpf(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	pCmdUI->Enable(lpDIB_FFT != NULL);
 }

@@ -15,15 +15,15 @@ Class3=CLjz153View
 Class4=CMainFrame
 
 ResourceCount=6
-Resource1=IDD_ABOUTBOX
+Resource1=IDD_DIALOG_GREY_STATICS
 Class5=CAboutDlg
-Resource2=IDR_MAINFRAME
+Resource2=IDD_DIALOG_LOW
 Class6=Dialog_Grey
-Resource3=IDD_DIALOG_LOW
+Resource3=IDR_MAINFRAME
 Class7=MoveDlg
 Resource4=IDD_DIALOG1
 Class8=Dlg_Low
-Resource5=IDD_DIALOG_GREY_STATICS
+Resource5=IDD_ABOUTBOX
 Class9=Dlg_High
 Resource6=IDD_DIALOG_HIGH
 
@@ -47,7 +47,7 @@ Type=0
 HeaderFile=ljz153View.h
 ImplementationFile=ljz153View.cpp
 Filter=C
-LastObject=CLjz153View
+LastObject=IDM_BHPF
 BaseClass=CScrollView
 VirtualFilter=VWC
 
@@ -57,7 +57,7 @@ Type=0
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
 Filter=T
-LastObject=IDM_EQUAL
+LastObject=IDM_BHPF
 BaseClass=CFrameWnd
 VirtualFilter=fWC
 
@@ -113,7 +113,9 @@ Command27=ID_GRAD_SHARP
 Command28=ID_RAPLAS_SHARP
 Command29=IDM_LOW
 Command30=IDM_HIGH
-CommandCount=30
+Command31=IDM_BPF
+Command32=IDM_BHPF
+CommandCount=32
 
 [ACL:IDR_MAINFRAME]
 Type=1

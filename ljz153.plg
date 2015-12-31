@@ -6,13 +6,13 @@
 --------------------Configuration: ljz153 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP1561.tmp" with contents
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPECF7.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ljz153.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"D:\Digital-image-processing-experiment\bmp.cpp"
+"D:\Digital-image-processing-experiment\ljz153View.cpp"
 ]
-Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP1561.tmp" 
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP1562.tmp" with contents
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPECF7.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPECF8.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ljz153.pdb" /debug /machine:I386 /out:"Debug/ljz153.exe" /pdbtype:sept 
 ".\Debug\bmp.obj"
@@ -27,14 +27,12 @@ Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP1562.tmp" with 
 ".\Debug\StdAfx.obj"
 ".\Debug\ljz153.res"
 ]
-Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP1562.tmp"
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPECF8.tmp"
 <h3>Output Window</h3>
 Compiling...
-bmp.cpp
-D:\Digital-image-processing-experiment\bmp.cpp(145) : warning C4804: '%' : unsafe use of type 'bool' in operation
-D:\Digital-image-processing-experiment\bmp.cpp(261) : warning C4101: 'newStatistics' : unreferenced local variable
+ljz153View.cpp
 Linking...
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP1746.tmp" with contents
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPEE12.tmp" with contents
 [
 /nologo /o"Debug/ljz153.bsc" 
 ".\Debug\StdAfx.sbr"
@@ -47,7 +45,7 @@ Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP1746.tmp" with 
 ".\Debug\ljz153View.sbr"
 ".\Debug\MainFrm.sbr"
 ".\Debug\MoveDlg.sbr"]
-Creating command line "bscmake.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP1746.tmp"
+Creating command line "bscmake.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPEE12.tmp"
 Creating browse info file...
 <h3>Output Window</h3>
 

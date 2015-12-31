@@ -167,8 +167,10 @@ BEGIN
     END
     POPUP "频域滤波"
     BEGIN
-        MENUITEM "低空滤波",                    IDM_LOW
-        MENUITEM "高通滤波",                    IDM_HIGH
+        MENUITEM "理想低空滤波",                IDM_LOW
+        MENUITEM "理想高通滤波",                IDM_HIGH
+        MENUITEM "巴特沃斯低通滤波器",          IDM_BPF
+        MENUITEM "巴特沃斯高通滤波器",          IDM_BHPF
     END
 END
 

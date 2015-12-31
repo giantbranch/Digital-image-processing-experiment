@@ -8,7 +8,7 @@ using namespace std;
 LPBITMAPINFO  lpBitsInfo = NULL;
 LPBITMAPINFO  TmplpBitsInfo = NULL;
 LPBITMAPINFO  lpBitsInfo1 = NULL;
-BITMAPINFO* lpDIB_FFT = NULL;  //频谱图像
+BITMAPINFO* lpDIB_FFT = NULL;  //快速傅里叶变换
 BITMAPINFO* lpDIB_IFFT = NULL;
 //LPBITMAPINFO  lpBitsInfo2 = NULL;
 int picNum = 0;
@@ -126,8 +126,8 @@ void ShowDetail(CPoint point){
 	
 	switch(lpBitsInfo->bmiHeader.biBitCount){
 	case 1:
-		val = *(lpBits + LineBytes * (h - 1 - point.y) + point.x/8)&(1<<(7-point.x%8));
-		Pixel = lpBits + LineBytes * (h - 1 - point.y) + point.x/8;
+		//val = *(lpBits + LineBytes * (h - 1 - point.y) + point.x/8)&(1<<(7-point.x%8));
+		//Pixel = lpBits + LineBytes * (h - 1 - point.y) + point.x/8;
 		*Pixel = *(lpBits + LineBytes * (h - 1 - point.y) + point.x/8)&(1<<(7-point.x%8));
 		//*Pixel = *Pixel >> (7-point.x%8)&1;
 		
@@ -167,7 +167,10 @@ void ShowDetail(CPoint point){
 		break;
 	case 24:
 		Pixel = lpBits + LineBytes * (h - 1 - point.y) + point.x;
-		//value.Format("%d", *Pixel);
+		R = *Pixel;
+		G =	*(Pixel+1);
+		B = *(Pixel+2);
+		value.Format("R:%d G:%d B:%d", R, G, B);
 		AfxMessageBox(value);
 		break;
 		
@@ -220,6 +223,7 @@ void GrayStatistics () {
 	*/
 }
 
+//线性点运算
 void linearity(){
 	int w = lpBitsInfo->bmiHeader.biWidth;	//宽度
 	int h = lpBitsInfo->bmiHeader.biHeight;	//高度
@@ -235,7 +239,7 @@ void linearity(){
 		{
 			// pixel = lpBits + LineBytes*(h-1-i)+ j; 
 			pixel = lpBits + LineBytes*i+ j; 
-			newVal = a*(*pixel)+b;
+			newVal = a*(*pixel)+b;	//计算线性点运算后的结果
 			if (newVal > 255){
 				*pixel = 255;
 			}
@@ -288,7 +292,7 @@ void FT(complex<double>* TD,complex<double>* FD,int m)
 	double angle;
 	for(u=0;u<m;u++)
 	{
-		FD[u]=0;
+		FD[u]=0;//初始化数组的值
 		for(x=0;x<m;x++)
 		{
 			angle=-2*PI*u*x/m;
@@ -311,11 +315,8 @@ void IFT(complex<double>* FD,complex<double>* TD,int m)
 		{
 			angle=2*PI*u*x/m;
 			TD[x]+=FD[u]*complex<double>(cos(angle),sin(angle));
-		}
-		
-		
-	}
-	
+		}				
+	}	
 }
 
 
@@ -455,7 +456,8 @@ void lowIFourier()
 	delete gFD;
 	
 	free(lpBitsInfo);
-	lpBitsInfo = lpDIB_FT;	
+	lpBitsInfo = lpDIB_FT;
+	
 }
 
 
@@ -984,6 +986,79 @@ void Ideal_Filter_FFT(int D)
 			else { //高通
 				if (dis <= -D) 
 					gFD[i * FFT_h + j] = 0; //理想高通，截断低频
+			}
+		}
+	}
+	
+	//生成新的频谱图像
+	int LineBytes = (width * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;
+	LONG size = 40 + 1024 + LineBytes * height;
+	BITMAPINFO* new_lpDIB_FFT = (LPBITMAPINFO) malloc(size);
+	memcpy(new_lpDIB_FFT, lpDIB_FFT, size);
+	BYTE* lpBits = (BYTE*)&new_lpDIB_FFT->bmiColors[new_lpDIB_FFT->bmiHeader.biClrUsed];
+	double temp;
+	BYTE* pixel;
+	for(i = 0; i < FFT_h; i++)
+	{
+		for(j = 0; j < FFT_w; j++)
+		{
+			temp = sqrt(gFD[j * FFT_h + i].real() * gFD[j * FFT_h + i].real() + 
+				gFD[j * FFT_h + i].imag() * gFD[j * FFT_h + i].imag())*2000 ;
+			if (temp > 255)
+				temp = 255;
+			pixel = lpBits + LineBytes * (height - 1 - i) + j;
+			*pixel = (BYTE)(temp);
+		}
+	}
+	//释放原频谱图像
+	if (lpDIB_FFT)
+		free(lpDIB_FFT);
+	//更新新的频谱图像
+	lpDIB_FFT = new_lpDIB_FFT;
+	
+	//傅里叶反变换
+	IFourier();
+	
+	//恢复到原始频域数据
+	delete gFD;
+	gFD = origin_FD;
+}
+
+// 巴特沃斯低通/高通滤波
+void BLPF_Filter_FFT(int D)
+{
+	//图像的宽度和高度
+	int width = lpBitsInfo->bmiHeader.biWidth;
+	int height = lpBitsInfo->bmiHeader.biHeight;
+	int FFT_w = 1;
+	while(FFT_w * 2 <= width)
+		FFT_w *= 2;
+	int FFT_h = 1;
+	while(FFT_h * 2 <= height)
+		FFT_h *= 2;
+	
+	//备份原始频域数据
+	complex<double>* origin_FD = new complex<double>[FFT_w * FFT_h];
+	for(int n = 0; n < FFT_w * FFT_h; n++)
+		origin_FD[n] = gFD[n];
+	
+	//频率滤波（理想高/低通滤波）
+	int i, j;
+	double dis;
+	for(i = 0; i < FFT_h; i++)
+	{
+		for(j = 0; j < FFT_w; j++)
+		{
+			dis = sqrt((i - FFT_h/2) * (i - FFT_h/2) + (j - FFT_w/2)  * (j - FFT_w/2) + 1);
+			
+			if (D > 0) //低通
+			{
+				if (dis > D) 
+					gFD[i * FFT_h + j] *= 1/(1+pow(dis/D,4));; //二阶巴特沃斯低通滤波器，截断高频
+			}
+			else { //高通
+				if (dis <= -D) 
+					gFD[i * FFT_h + j] *= 1/(1+pow(D/dis,4)); //二阶巴特沃斯高通滤波器，截断低频
 			}
 		}
 	}
